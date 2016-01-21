@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script>
+
+
+    </script>
+</head>
+<body>
+
+<h1>Mulberry Data Collection Report</h1>
+
+
+<form action="/report">
+
+
+    <select id="type_of_dfl" name="type_of_dfl">
+        <option>Select</option>
+        <option value = "CB">CB</option>
+        <option value = "BV">BV</option>
+    </select>
+
+    <label>Start Date: </label>
+    <input type="date" placeholder="dd-mm-yyyy" name="start_date" id ="start_date">
+
+    <label>End Date: </label>
+    <input type="date" placeholder="dd-mm-yyyy" name="end_date" id="end_date">
+
+
+    <input type="submit">
+
+</form>
+
+<div id="printArea">
+
+<table border="1" style="width:100%">
+
+
+  <tr>
+    <th>Farmer's Name</th>
+    <th>Location</th>
+    <th>Area under Mulberry(Acres)</th>
+    <th>Type of DFL</th>
+    <th>Number of DFL</th>
+    <th>Actual Yield</th>
+    <th>Yield per 100 DFls</th>
+    <th>Price per Kg</th>
+    <th>Total Amount</th>
+   </tr>
+
+
+
+
+   {% for item in marketResults %}
+<tr>
+   <td>{{item.name_farmer}}</td>
+   <td>{{item.location_village}}/{{item.location_district}}/{{item.location_state}}</td>
+   <td>{{item.area}}</td>
+   <td>{{item.type_of_dfl}}</td>
+   <td>{{item.number_of_dfls}}</td>
+   <td>{{item.actual_yield}}</td>
+   <td>{{item.yield_per_100}}</td>
+   <td>{{item.price_per_kg}}</td>
+   <td>{{item.total_amount}}</td>
+</tr>
+    {% endfor %}
+
+
+</table>
+
+    </div>
+
+<form action="/reportCSV">
+    <br>
+    <label id="fileNameLabel" for="fileName">Enter the file name: </label>
+    <input type="text" id="fileName" name ="fileName" placeholder="file name">
+    <input type="submit"  value="Download as excel file" />
+
+</form>
+
+
+</body>
+</html>
